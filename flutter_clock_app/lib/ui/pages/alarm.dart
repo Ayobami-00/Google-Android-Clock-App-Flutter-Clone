@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_clock_app/utils/colors.dart';
-import 'package:slider_button/slider_button.dart';
+import 'package:flutter_clock_app/ui/widgets/custom_expansion_tile.dart' as custom;
+import 'dart:math' as math;
 
 class AlarmPage extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _AlarmPageState extends State<AlarmPage> {
       body: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
             Color expansionTileColor = appColors.color2;
-            return ExpansionTile(
+            return custom.ExpansionTile(
               backgroundColor: expansionTileColor,
               title: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
@@ -125,16 +126,25 @@ class _AlarmPageState extends State<AlarmPage> {
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: FlatButton.icon(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.delete,
-                      color: appColors.color1,
-                    ),
-                    label: Text("Delete",
-                        style: TextStyle(
+                  child: Row(
+                    children: <Widget>[
+                      FlatButton.icon(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.delete,
                           color: appColors.color1,
-                        )),
+                        ),
+                        label: Text("Delete",
+                            style: TextStyle(
+                              color: appColors.color1,
+                            )),
+                      ),
+                      SizedBox(width: 220.0),
+                      Transform.rotate(
+                        angle: 180 * math.pi/180,
+                        child: Icon(Icons.expand_more, color: Colors.white,),
+                      )
+                    ],
                   ),
                 ),
               ],

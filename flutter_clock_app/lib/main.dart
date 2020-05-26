@@ -3,7 +3,7 @@ import 'package:flutter_clock_app/ui/pages/home.dart';
 
 void main() {
   runApp(MaterialApp(
-      home: HomePage(),
+    debugShowCheckedModeBanner: false,
+    home: HomePage(),
   ));
 }
-

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clock_app/utils/hex_colour.dart';
 
 class AppColors {
-    Color color1 = Colors.white;
-    Color color2 = Colors.blueAccent;
-    Color color3 = Colors.blueAccent.withOpacity(0.6);
-    Color color4 = Colors.orange;
+    Color color1 = Colors.white.withOpacity(0.7);
+    Color color2 = HexColor("303354");
+    Color color3 = HexColor("444563");
+    Color color4 = HexColor("ffa40f");
 
 }

@@ -3,6 +3,8 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_clock_app/ui/pages/time_zone.dart';
+import 'package:flutter_clock_app/ui/pages/timer.dart';
 
 import 'package:flutter_clock_app/utils/colors.dart';
 import 'package:flutter_clock_app/ui/pages/alarm.dart';
@@ -17,8 +19,8 @@ class _HomePageState extends State<HomePage> {
   AppColors appColors = AppColors();
   final List<Widget> _children = [
     AlarmPage(),
-    Text("2"),
-    Text("3"),
+    TimeZonePage(),
+    TimerPage(),
     Text("4"),
     Text("5"),
   ];
@@ -44,6 +46,7 @@ class _HomePageState extends State<HomePage> {
                         child: Icon(
                           Icons.alarm,
                           size: 25.0,
+                          color: appColors.color1,
                         ),
                       )),
                       Expanded(
@@ -52,6 +55,7 @@ class _HomePageState extends State<HomePage> {
                         child: Icon(
                           Icons.timer,
                           size: 25.0,
+                          color: appColors.color1,
                         ),
                       )),
                       Expanded(
@@ -60,6 +64,7 @@ class _HomePageState extends State<HomePage> {
                         child: Icon(
                           Icons.hourglass_empty,
                           size: 25.0,
+                          color: appColors.color1,
                         ),
                       )),
                       Expanded(
@@ -68,6 +73,7 @@ class _HomePageState extends State<HomePage> {
                         child: Icon(
                           Icons.timer,
                           size: 25.0,
+                          color: appColors.color1,
                         ),
                       )),
                       Expanded(
@@ -76,6 +82,7 @@ class _HomePageState extends State<HomePage> {
                         child: Icon(
                           Icons.more_vert,
                           size: 25.0,
+                          color: appColors.color1,
                         ),
                       )),
                     ],
