@@ -1,0 +1,2 @@
+1. Make the header buttons animate and change color on click.
+2. Fix the right fonts.

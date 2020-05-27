@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_clock_app/utils/colors.dart';
-import 'package:flutter_clock_app/ui/widgets/custom_expansion_tile.dart' as custom;
+import 'package:flutter_clock_app/ui/widgets/custom_expansion_tile.dart'
+    as custom;
 import 'dart:math' as math;
 
 class AlarmPage extends StatefulWidget {
@@ -11,6 +12,7 @@ class AlarmPage extends StatefulWidget {
 
 class _AlarmPageState extends State<AlarmPage> {
   AppColors appColors = AppColors();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,11 +28,16 @@ class _AlarmPageState extends State<AlarmPage> {
       ),
       body: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
-            Color expansionTileColor = appColors.color2;
+            Color notExpandedColor = appColors.color2;
+            Color onExpandedColor = appColors.color2.withOpacity(0.7);
+            bool isExpanded = false;
+            bool isRepeatDaysVisibile = false;
+
             return custom.ExpansionTile(
-              backgroundColor: expansionTileColor,
+              backgroundColor:
+                  isExpanded == false ? notExpandedColor : onExpandedColor,
               title: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+                padding: const EdgeInsets.only(top: 20.0),
                 child: RichText(
                   text: TextSpan(
                     text: '4:15',
@@ -44,21 +51,24 @@ class _AlarmPageState extends State<AlarmPage> {
                   ),
                 ),
               ),
-              subtitle: Padding(
-                  padding: const EdgeInsets.only(top: 27.0),
-                  child: RichText(
-                    text: TextSpan(
-                      text: 'Wake Philip up',
-                      style: TextStyle(color: Colors.grey),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: ' Tomorrow',
-                            style: TextStyle(
-                                color: appColors.color1,
-                                fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                  )),
+              subtitle: Visibility(
+                visible: !isExpanded,
+                child: Padding(
+                    padding: const EdgeInsets.only(top: 27.0),
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'Wake Philip up',
+                        style: TextStyle(color: Colors.grey),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: ' Tomorrow',
+                              style: TextStyle(
+                                  color: appColors.color1,
+                                  fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                    )),
+              ),
               //      trailing: Column(
               //   children: <Widget>[
               //     Icon(
@@ -72,16 +82,140 @@ class _AlarmPageState extends State<AlarmPage> {
               //     ),
               //   ],
               // ),
+              onExpansionChanged: (value) {
+                setState(() {
+                  isExpanded = value;
+                  // print(value);
+                  // print(!isExpanded);
+                });
+              },
               children: <Widget>[
                 Align(
                   alignment: Alignment.centerLeft,
                   child: FlatButton.icon(
-                      onPressed: () {},
-                      icon: Icon(Icons.check, color:appColors.color1,),
+                      onPressed: () {
+                        setState(() {
+                          if(isRepeatDaysVisibile == false){
+                            isRepeatDaysVisibile = true;
+                          }else{
+                            isRepeatDaysVisibile = false;
+                          }
+                        });
+                      },
+                      icon: Container(
+                        height: 20.0,
+                        width: 20.0,
+                        child: Icon(
+                          Icons.check,
+                          color: appColors.color1,
+                          size: 12,
+                        ),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: appColors.color4,
+                            border: Border.all(color: Colors.white)
+                            // border: Bo
+                            ),
+                      ),
                       label: Text("Repeat",
                           style: TextStyle(
                             color: appColors.color1,
                           ))),
+                ),
+                Visibility(
+                  visible: isRepeatDaysVisibile,
+                  child: Padding(
+                      padding:
+                          EdgeInsets.only(left: 10.0, right: 25.0, top: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                              height: 30.0,
+                              width: 30.0,
+                              child: Center(
+                                  child: Text("S",
+                                      style: TextStyle(
+                                          color: appColors.color1,
+                                          fontSize: 20.0))),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: appColors.color4,
+                              )),
+                          Container(
+                              height: 30.0,
+                              width: 30.0,
+                              child: Center(
+                                  child: Text("M",
+                                      style: TextStyle(
+                                          color: appColors.color1,
+                                          fontSize: 20.0))),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: appColors.color4,
+                              )),
+                          Container(
+                              height: 30.0,
+                              width: 30.0,
+                              child: Center(
+                                  child: Text("T",
+                                      style: TextStyle(
+                                          color: appColors.color1,
+                                          fontSize: 20.0))),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: appColors.color4,
+                              )),
+                          Container(
+                              height: 30.0,
+                              width: 30.0,
+                              child: Center(
+                                  child: Text("W",
+                                      style: TextStyle(
+                                          color: appColors.color1,
+                                          fontSize: 20.0))),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: appColors.color4,
+                              )),
+                          Container(
+                              height: 30.0,
+                              width: 30.0,
+                              child: Center(
+                                  child: Text("T",
+                                      style: TextStyle(
+                                          color: appColors.color1,
+                                          fontSize: 20.0))),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: appColors.color4,
+                              )),
+                          Container(
+                              height: 30.0,
+                              width: 30.0,
+                              child: Center(
+                                  child: Text("F",
+                                      style: TextStyle(
+                                          color: appColors.color1,
+                                          fontSize: 20.0))),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: appColors.color4,
+                              )),
+                          Container(
+                              height: 30.0,
+                              width: 30.0,
+                              child: Center(
+                                  child: Text("S",
+                                      style: TextStyle(
+                                          color: appColors.color1,
+                                          fontSize: 20.0))),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: appColors.color4,
+                              )),
+                        ],
+                      )),
                 ),
                 Align(
                     alignment: Alignment.centerLeft,
@@ -141,8 +275,11 @@ class _AlarmPageState extends State<AlarmPage> {
                       ),
                       SizedBox(width: 220.0),
                       Transform.rotate(
-                        angle: 180 * math.pi/180,
-                        child: Icon(Icons.expand_more, color: Colors.white,),
+                        angle: 180 * math.pi / 180,
+                        child: Icon(
+                          Icons.expand_more,
+                          color: Colors.white,
+                        ),
                       )
                     ],
                   ),

@@ -185,7 +185,9 @@ class _ExpansionTileState extends State<ExpansionTile>
                       ],
                     ),
                     SizedBox(height: 2.0,),
-                    Divider(color: Colors.white.withOpacity(0.2)),
+                    Visibility(
+                      visible: !_isExpanded,
+                      child: Divider(color: Colors.white.withOpacity(0.2))),
                   ],
                 ),
                 trailing: null),
